@@ -1,0 +1,45 @@
+<script>
+  const themeBTNText = revaui.statefulObj('Fetching current theme...');
+  setTimeout(() => themeBTNText.value = `Change to ${revaui.app.theme === 'light' ? 'dark' : 'light'} mode`, 100);
+  
+  revaui.app.render([
+    navbar('Settings'),
+    revaui.components.Padding({
+      padding: '1rem',
+      content: [
+        revaui.components.Div({
+          content: [
+            revaui.components.Div({
+              content: [
+                revaui.components.Text({
+                  content: 'UI',
+                  fontSize: '30px',
+                }),
+              ],
+              style: 'display: flex; justify-content: center;',
+            }),
+            revaui.components.Div({
+              content: [],
+              style: 'border: 2px solid; border-color: #2563eb;',
+            }),
+            revaui.components.Div({
+              content: [
+                revaui.components.Button({
+                  content: themeBTNText,
+                  onclick: () => {
+                    revaui.app.theme === 'light' ? revaui.app.setTheme('dark') : revaui.app.setTheme('light');
+                    setTimeout(() =>
+                      themeBTNText.value = `Change to ${revaui.app.theme === 'light' ? 'dark' : 'light'} mode`,
+                    100);
+                  },
+                }),
+              ],
+              style: 'padding: 12px;',
+            }),
+          ],
+          style: 'border: 2px solid; border-color: #2563eb; border-radius: 30px; width: 30%;'
+        }),
+      ],
+    }),
+  ]);
+</script>

@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+:root {
+  font-family: 'Inter', sans-serif;
+}
+
+input[type=text], input[type=password] {
+  border: 2px solid;
+  border-radius: 2rem;
+  border-color: #2563eb;
+  background-color: var(--white);
+  color: var(--black);
+  font-size: 24px;
+  padding: 12px;
+}
