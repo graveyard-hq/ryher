@@ -38,4 +38,19 @@ const SignUpSchema = yup.object({
   }),
 });
 
-export { SignUpSchema, SignInSchema };
+const UpdateAccountSchema = yup.object({
+  body: yup.object({
+    username: yup
+      .string()
+      .min(6, "Username must be 6 characters long")
+      .max(24, "Maximum 24 characters allowed")
+      .trim(),
+    email: yup.string().email("Must be an email").lowercase(),
+    password: yup
+      .string()
+      .min(8, "Password must be at least 8 characters long")
+      .max(64, "Maximum 64 characters allowed"),
+  }),
+});
+
+export { SignUpSchema, SignInSchema, UpdateAccountSchema };
