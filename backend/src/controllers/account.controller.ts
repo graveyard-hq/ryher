@@ -1,6 +1,10 @@
 import { Response, Request } from "express";
 
-import { findUserById } from "../services/account.service";
+import {
+  findUserById,
+  updateUser,
+  deleteUser,
+} from "../services/account.service";
 
 async function getAccount(req: Request, res: Response) {
   try {
@@ -12,6 +16,8 @@ async function getAccount(req: Request, res: Response) {
         message: "Invalid User Request",
         payload: null,
       });
+
+      return;
     }
 
     res.status(200).send({
@@ -30,6 +36,7 @@ async function getAccount(req: Request, res: Response) {
 
 async function updateAccount(req: Request, res: Response) {
   try {
+    const { username, email, password } = req.body;
     const data = await findUserById(req.user.id);
 
     if (!data) {
@@ -38,7 +45,21 @@ async function updateAccount(req: Request, res: Response) {
         message: "Invalid User Request",
         payload: null,
       });
+
+      return;
     }
+
+    const updated = await updateUser(data!.id, {
+      username: username,
+      email: email,
+      password: password,
+    });
+
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: updated,
+    });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
@@ -58,7 +79,15 @@ async function deleteAccount(req: Request, res: Response) {
         message: "Invalid User Request",
         payload: null,
       });
+
+      return;
     }
+
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: await deleteUser(data!.id),
+    });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,

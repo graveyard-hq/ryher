@@ -40,7 +40,6 @@ async function signIn(req: Request, res: Response) {
         accessToken: await generateAccessToken(data!.id),
       },
     });
-
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
@@ -75,7 +74,6 @@ async function signUp(req: Request, res: Response) {
         accessToken: await generateAccessToken(data.id),
       },
     });
-
   } catch (error) {
     res.status(500).send({
       statusCode: 500,

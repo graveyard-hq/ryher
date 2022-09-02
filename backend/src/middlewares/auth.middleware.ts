@@ -8,7 +8,11 @@ declare module "express" {
   }
 }
 
-const authorizeRequest = async (req: Request, res: Response, next: NextFunction) => {
+const authorizeRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   let accessToken: any;
   if (
     req.headers.authorization &&
