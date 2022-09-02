@@ -11,6 +11,12 @@ import { SignInSchema, SignUpSchema, UpdateAccountSchema } from "../models/accou
 import { signIn, signUp } from "../controllers/auth.controller";
 
 import { getAccount, updateAccount, deleteAccount } from "../controllers/account.controller";
+import {
+  createNote,
+  getNotes,
+  getNoteUsingId,
+  deleteNoteUsingId,
+} from "../controllers/note.controller";
 
 router.post("/auth/signup", validateRequest(SignUpSchema), signUp);
 router.post("/auth/signin", validateRequest(SignInSchema), signIn);
@@ -18,6 +24,9 @@ router.post("/auth/signin", validateRequest(SignInSchema), signIn);
 router.get("/account", authorizeRequest, getAccount);
 router.put("/account", validateRequest(UpdateAccountSchema), authorizeRequest, updateAccount);
 router.delete("/account", authorizeRequest, deleteAccount);
+
+router.get("/notes", authorizeRequest, getNotes);
+router.post("/notes", authorizeRequest, createNote);
 
 router.get("/health", async (req: Request, res: Response) => {
   const data = {

@@ -9,7 +9,7 @@ async function getAccount(req: Request, res: Response) {
     if (!data) {
       res.status(404).send({
         statusCode: 404,
-        message: "Invalid User Request",
+        message: "Not found",
         payload: null,
       });
 
@@ -38,7 +38,7 @@ async function updateAccount(req: Request, res: Response) {
     if (!data) {
       res.status(404).send({
         statusCode: 404,
-        message: "Invalid User Request",
+        message: "Not found",
         payload: null,
       });
 
@@ -72,7 +72,7 @@ async function deleteAccount(req: Request, res: Response) {
     if (!data) {
       res.status(404).send({
         statusCode: 404,
-        message: "Invalid User Request",
+        message: "Not found",
         payload: null,
       });
 
