@@ -24,6 +24,7 @@ router.get("/health", async (req: Request, res: Response) => {
     uptime: process.uptime(),
     status: "up",
     timestamp: Date.now(),
+    git_hash: process.env.GIT_SHA,
   };
   try {
     res.status(200).send({
