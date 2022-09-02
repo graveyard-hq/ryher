@@ -26,6 +26,7 @@ router.put("/account", validateRequest(UpdateAccountSchema), authorizeRequest, u
 router.delete("/account", authorizeRequest, deleteAccount);
 
 router.get("/notes", authorizeRequest, getNotes);
+router.get("/notes/:id", authorizeRequest, getNoteUsingId);
 router.post("/notes", authorizeRequest, createNote);
 
 router.get("/health", async (req: Request, res: Response) => {

@@ -17,16 +17,9 @@ const createNewNote = async (data: any, accountId: string) => {
   });
 };
 
-const findNoteById = async (noteId: string, accountId: string) => {
-  return await db.note.findFirst({
-    where: { id: noteId, accountId: accountId },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      createdAt: true,
-      updatedAt: true,
-    },
+const findNoteById = async (noteId: string) => {
+  return await db.note.findUnique({
+    where: { id: noteId },
   });
 };
 
@@ -48,8 +41,26 @@ const fetchAllNotes = async (accountId: string) => {
   });
 };
 
-const deleteNote = async () => {};
+const deleteNote = async (nodeId: string, accountId: string) => {
+  return await db.note.deleteMany({
+    where: {
+      id: nodeId,
+      accountId: accountId,
+    },
+  });
+};
 
-const updateNote = async () => {};
+const updateNote = async (data: any, nodeId: string, accountId: string) => {
+  return await db.note.updateMany({
+    where: {
+      id: nodeId,
+      accountId: accountId,
+    },
+    data: {
+      title: data.title || undefined,
+      description: data.description || undefined,
+    },
+  });
+};
 
 export { createNewNote, findNoteById, fetchAllNotes, deleteNote, updateNote };

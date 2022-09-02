@@ -76,6 +76,7 @@ async function getNotes(req: Request, res: Response) {
 async function getNoteUsingId(req: Request, res: Response) {
   try {
     const data = await findUserById(req.user.id);
+    const id = req.params.id as any;
 
     if (!data) {
       res.status(404).send({
@@ -86,6 +87,36 @@ async function getNoteUsingId(req: Request, res: Response) {
 
       return;
     }
+
+    const note = await findNoteById(id);
+
+    if (!note) {
+      res.status(404).send({
+        statusCode: 404,
+        message: "Not found",
+        payload: null,
+      });
+
+      return;
+    }
+
+    if (note?.accountId != data.id) {
+      res.status(403).send({
+        statusCode: 406,
+        message: "Forbidden",
+        payload: null,
+      });
+
+      return;
+    }
+
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: note,
+    });
+
+    return;
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
