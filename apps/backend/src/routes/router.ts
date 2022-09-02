@@ -10,11 +10,7 @@ import { SignInSchema, SignUpSchema, UpdateAccountSchema } from "../models/accou
 
 import { signIn, signUp } from "../controllers/auth.controller";
 
-import {
-  getAccount,
-  updateAccount,
-  deleteAccount,
-} from "../controllers/account.controller";
+import { getAccount, updateAccount, deleteAccount } from "../controllers/account.controller";
 
 router.post("/auth/signup", validateRequest(SignUpSchema), signUp);
 router.post("/auth/signin", validateRequest(SignInSchema), signIn);

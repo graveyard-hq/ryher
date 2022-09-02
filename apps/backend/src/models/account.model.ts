@@ -7,10 +7,7 @@ const SignInSchema = yup.object({
       .email("Must be an valid email")
       .required("Email is required")
       .defined("Email must be defined"),
-    password: yup
-      .string()
-      .required("Password is required")
-      .defined("Password must be defined"),
+    password: yup.string().required("Password is required").defined("Password must be defined"),
   }),
 });
 

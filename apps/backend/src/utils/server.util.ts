@@ -15,22 +15,20 @@ function createServer() {
   server.use(
     cors({
       origin: process.env.HOST_URL,
-    })
+    }),
   );
 
   server.use(`/${API_VERSION}`, router);
 
-  server.use(
-    (error: Error, req: Request, res: Response, next: NextFunction) => {
-      res.status(500).send({
-        statusCode: 500,
-        message: "Internal Server Error",
-        payload: null,
-      });
+  server.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+    res.status(500).send({
+      statusCode: 500,
+      message: "Internal Server Error",
+      payload: null,
+    });
 
-      log.error(error);
-    }
-  );
+    log.error(error);
+  });
 
   server.use((req: Request, res: Response, next: NextFunction) => {
     res.status(404).send({

@@ -1,10 +1,6 @@
 import { Response, Request } from "express";
 
-import {
-  findUserById,
-  updateUser,
-  deleteUser,
-} from "../services/account.service";
+import { findUserById, updateUser, deleteUser } from "../services/account.service";
 
 async function getAccount(req: Request, res: Response) {
   try {

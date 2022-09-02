@@ -8,22 +8,13 @@ declare module "express" {
   }
 }
 
-const authorizeRequest = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const authorizeRequest = async (req: Request, res: Response, next: NextFunction) => {
   let accessToken: any;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization?.startsWith("Bearer")
-  ) {
+  if (req.headers.authorization && req.headers.authorization?.startsWith("Bearer")) {
     try {
       accessToken = req.headers.authorization?.split(" ")[1];
 
-      const value = <any>(
-        jwt.verify(accessToken, process.env.JWT_SECRET_KEY as string)
-      );
+      const value = <any>jwt.verify(accessToken, process.env.JWT_SECRET_KEY as string);
       req.user = value;
 
       next();
