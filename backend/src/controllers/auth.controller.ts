@@ -33,8 +33,6 @@ async function signIn(req: Request, res: Response) {
       return;
     }
 
-    console.log(data);
-
     res.status(200).send({
       statusCode: 200,
       message: "Success",
