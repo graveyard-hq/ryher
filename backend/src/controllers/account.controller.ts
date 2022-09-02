@@ -1,18 +1,24 @@
 import { Response, Request } from "express";
 
-async function createAccount(req: Request, res: Response) {
-  try {
-  } catch (error) {
-    res.status(500).send({
-      statusCode: 500,
-      message: "Internal Server Error",
-      payload: null,
-    });
-  }
-}
+import { findUserById } from "../services/account.service";
 
 async function getAccount(req: Request, res: Response) {
   try {
+    const data = await findUserById(req.user.id);
+
+    if (!data) {
+      res.status(404).send({
+        statusCode: 404,
+        message: "Invalid User Request",
+        payload: null,
+      });
+    }
+
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: data,
+    });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
@@ -24,6 +30,15 @@ async function getAccount(req: Request, res: Response) {
 
 async function updateAccount(req: Request, res: Response) {
   try {
+    const data = await findUserById(req.user.id);
+
+    if (!data) {
+      res.status(404).send({
+        statusCode: 404,
+        message: "Invalid User Request",
+        payload: null,
+      });
+    }
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
@@ -35,6 +50,15 @@ async function updateAccount(req: Request, res: Response) {
 
 async function deleteAccount(req: Request, res: Response) {
   try {
+    const data = await findUserById(req.user.id);
+
+    if (!data) {
+      res.status(404).send({
+        statusCode: 404,
+        message: "Invalid User Request",
+        payload: null,
+      });
+    }
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
@@ -44,9 +68,4 @@ async function deleteAccount(req: Request, res: Response) {
   }
 }
 
-export {
-  createAccount,
-  getAccount,
-  updateAccount,
-  deleteAccount,
-};
+export { getAccount, updateAccount, deleteAccount };

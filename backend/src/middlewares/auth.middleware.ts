@@ -8,7 +8,7 @@ declare module "express" {
   }
 }
 
-const authorize = async (req: Request, res: Response, next: NextFunction) => {
+const authorizeRequest = async (req: Request, res: Response, next: NextFunction) => {
   let accessToken: any;
   if (
     req.headers.authorization &&
@@ -46,4 +46,4 @@ const authorize = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export default authorize;
+export default authorizeRequest;

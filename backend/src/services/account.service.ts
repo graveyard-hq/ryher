@@ -1,7 +1,20 @@
 import db from "../utils/db.util";
 
-const checkUser = async (email: string) => {
+const findUserByEmail = async (email: string) => {
   return await db.account.findUnique({ where: { email: email } });
+};
+
+const findUserById = async (id: string) => {
+  return await db.account.findUnique({
+    where: { id: id },
+    select: {
+      id: true,
+      username: true,
+      email: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
 };
 
 const createUser = async (user: any) => {
@@ -14,4 +27,4 @@ const createUser = async (user: any) => {
   });
 };
 
-export { checkUser, createUser };
+export { findUserByEmail, createUser, findUserById };

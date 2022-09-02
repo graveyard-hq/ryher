@@ -3,13 +3,13 @@ import { Response, Request } from "express";
 import { hashPassword, verifyPassword } from "../utils/hash.util";
 import generateAccessToken from "../utils/jwt.util";
 
-import { checkUser, createUser } from "../services/account.service";
+import { findUserByEmail, createUser } from "../services/account.service";
 
 async function signIn(req: Request, res: Response) {
   try {
     const { email, password } = req.body;
 
-    const data = await checkUser(email);
+    const data = await findUserByEmail(email);
 
     if (!data) {
       res.status(404).send({
@@ -53,7 +53,7 @@ async function signIn(req: Request, res: Response) {
 async function signUp(req: Request, res: Response) {
   try {
     const { username, email, password } = req.body;
-    if (await checkUser(email)) {
+    if (await findUserByEmail(email)) {
       res.status(409).send({
         statusCode: 409,
         message: "Conflict",
