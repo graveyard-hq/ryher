@@ -6,7 +6,7 @@
     "main": "./src/index.ts",
     "scripts": {
         "build": "tsc",
-        "start": "export GIT_SHA=$(git rev-parse --short HEAD) NODE_ENV=production && node build/src/index.js",
+        "start": "export GIT_SHA=$(git rev-parse --short HEAD) NODE_ENV=production && node build/index.js",
         "dev": "export GIT_SHA=$(git rev-parse --short HEAD) NODE_ENV=development && nodemon ./src/index.ts",
         "db:push": "prisma db push",
         "db:pull": "prisma db pull",
