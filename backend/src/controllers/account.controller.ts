@@ -44,7 +44,7 @@ async function deleteAccount(req: Request, res: Response) {
   }
 }
 
-export default {
+export {
   createAccount,
   getAccount,
   updateAccount,

@@ -4,6 +4,14 @@ import log from "../utils/logger.util";
 
 const router = express.Router();
 
+import { signIn, signUp } from "../controllers/auth.controller";
+import { SignInSchema, SignUpSchema } from "../models/account.model";
+
+import validateRequest from "../middlewares/validate.middleware";
+
+router.post("/auth/signup", validateRequest(SignUpSchema), signUp);
+router.post("/auth/signin", validateRequest(SignInSchema), signIn);
+
 router.get("/health", async (req: Request, res: Response) => {
   const data = {
     uptime: process.uptime(),

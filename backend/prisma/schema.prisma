@@ -8,8 +8,9 @@ datasource db {
 }
 
 model Account {
-  id       String @id @default(cuid()) @map("_id")
-  email    String
+  id       String @id @unique @default(cuid()) @map("_id")
+  username String
+  email    String @unique
   password String
 
   createdAt DateTime @default(now())
@@ -18,12 +19,11 @@ model Account {
   bookmarks Bookmark[]
   notes     Note[]
 
-  @@unique([id, email])
   @@map("accounts")
 }
 
 model Bookmark {
-  id        String   @id @default(cuid()) @map("_id")
+  id        String   @id @unique @default(cuid()) @map("_id")
   title     String?
   url       String?
   Account   Account? @relation(fields: [accountId], references: [id], onDelete: Cascade)
@@ -36,7 +36,7 @@ model Bookmark {
 }
 
 model Note {
-  id          String   @id @default(cuid()) @map("_id")
+  id          String   @id @unique @default(cuid()) @map("_id")
   title       String
   description String
   Account     Account? @relation(fields: [accountId], references: [id], onDelete: Cascade)
