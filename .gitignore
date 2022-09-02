@@ -1,5 +1,10 @@
 node_modules
+# Keep out of version control
 .env
 .env.dev
 .env.prod
 .env.test
+package-lock.json
+build
+dist
+out
