@@ -23,7 +23,7 @@ const authorizeRequest = async (req: Request, res: Response, next: NextFunction)
 
       res.status(401).send({
         statusCode: 401,
-        message: "Unautorized",
+        message: "Unauthorized",
         payload: error,
       });
     }
@@ -33,7 +33,7 @@ const authorizeRequest = async (req: Request, res: Response, next: NextFunction)
   if (!accessToken) {
     res.status(401).send({
       statusCode: 401,
-      message: "Unautorized",
+      message: "Unauthorized",
       payload: null,
     });
 
