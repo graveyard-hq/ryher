@@ -126,6 +126,38 @@ async function getNoteUsingId(req: Request, res: Response) {
   }
 }
 
+async function updateNoteById(req: Request, res: Response) {
+  try {
+    const data = await findUserById(req.user.id);
+    if (!data) {
+      res.status(404).send({
+        statusCode: 404,
+        message: "Not found",
+        payload: null,
+      });
+      return;
+    }
+
+    const { title, description } = req.body;
+
+    res.status(200).send({
+      statusCode: 404,
+      message: "Success",
+      payload: await updateNote(
+        { title: title, description: description },
+        req.params.id as string,
+        data.id,
+      ),
+    });
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: "Internal Server Error",
+      payload: null,
+    });
+  }
+}
+
 async function deleteNoteUsingId(req: Request, res: Response) {
   try {
     const data = await findUserById(req.user.id);
@@ -139,6 +171,12 @@ async function deleteNoteUsingId(req: Request, res: Response) {
 
       return;
     }
+
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: await deleteNote(req.body.id, data.id),
+    });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
