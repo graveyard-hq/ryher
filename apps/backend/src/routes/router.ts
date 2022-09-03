@@ -16,6 +16,7 @@ import {
   getNotes,
   getNoteUsingId,
   deleteNoteUsingId,
+  updateNoteById,
 } from "../controllers/note.controller";
 
 router.post("/auth/signup", validateRequest(SignUpSchema), signUp);
@@ -28,6 +29,8 @@ router.delete("/account", authorizeRequest, deleteAccount);
 router.get("/notes", authorizeRequest, getNotes);
 router.get("/notes/:id", authorizeRequest, getNoteUsingId);
 router.post("/notes", authorizeRequest, createNote);
+router.put("/notes/:id", authorizeRequest, updateNoteById);
+router.delete("/notes", authorizeRequest, deleteNoteUsingId);
 
 router.get("/health", async (req: Request, res: Response) => {
   const data = {

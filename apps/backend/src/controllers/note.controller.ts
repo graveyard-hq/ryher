@@ -186,4 +186,4 @@ async function deleteNoteUsingId(req: Request, res: Response) {
   }
 }
 
-export { createNote, getNotes, getNoteUsingId, deleteNoteUsingId };
+export { createNote, getNotes, getNoteUsingId, deleteNoteUsingId, updateNoteById };
