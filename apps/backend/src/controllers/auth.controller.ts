@@ -20,10 +20,8 @@ async function signIn(req: Request, res: Response) {
 
       return;
     }
-
-    const validPassword = await verifyPassword(password, data!.password);
-
-    if (!validPassword) {
+  
+    if (!await verifyPassword(password, data!.password)) {
       res.status(401).send({
         statusCode: 401,
         message: "Invalid Password",
