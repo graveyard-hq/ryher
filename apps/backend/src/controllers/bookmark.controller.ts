@@ -2,6 +2,11 @@ import { Response, Request } from "express";
 
 async function createBookmark(req: Request, res: Response) {
   try {
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: null,
+    });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
@@ -13,6 +18,11 @@ async function createBookmark(req: Request, res: Response) {
 
 async function getAllBookmark(req: Request, res: Response) {
   try {
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: null,
+    });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
@@ -24,6 +34,11 @@ async function getAllBookmark(req: Request, res: Response) {
 
 async function getBookmarkwithId(req: Request, res: Response) {
   try {
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: null,
+    });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
@@ -35,6 +50,11 @@ async function getBookmarkwithId(req: Request, res: Response) {
 
 async function deleteBookmarkwithId(req: Request, res: Response) {
   try {
+    res.status(200).send({
+      statusCode: 200,
+      message: "Success",
+      payload: null,
+    });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,
