@@ -41,19 +41,19 @@ const fetchAllNotes = async (accountId: string) => {
   });
 };
 
-const deleteNote = async (nodeId: string, accountId: string) => {
+const deleteNote = async (noteId: string, accountId: string) => {
   return await db.note.deleteMany({
     where: {
-      id: nodeId,
+      id: noteId,
       accountId: accountId,
     },
   });
 };
 
-const updateNote = async (data: any, nodeId: string, accountId: string) => {
+const updateNote = async (data: any, noteId: string, accountId: string) => {
   return await db.note.updateMany({
     where: {
-      id: nodeId,
+      id: noteId,
       accountId: accountId,
     },
     data: {
