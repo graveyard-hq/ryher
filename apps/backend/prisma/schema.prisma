@@ -3,36 +3,24 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Account {
-  id       String @id @unique @default(cuid()) @map("_id")
+  id       String  @id @unique @default(cuid()) @map("_id")
   username String
-  email    String @unique
+  email    String  @unique
   password String
+  verified Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  bookmarks Bookmark[]
-  notes     Note[]
+  notes Note[]
 
   @@map("accounts")
-}
-
-model Bookmark {
-  id        String  @id @unique @default(cuid()) @map("_id")
-  title     String
-  url       String
-  Account   Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
-  accountId String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("bookmarks")
 }
 
 model Note {
@@ -46,4 +34,5 @@ model Note {
   updatedAt DateTime @updatedAt
 
   @@map("notes")
+  @@index([accountId])
 }
