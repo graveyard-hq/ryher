@@ -23,6 +23,7 @@
   "dependencies": {
     "@fastify/cors": "^8.2.0",
     "@fastify/helmet": "^10.1.0",
+    "@fastify/jwt": "^6.5.0",
     "@prisma/client": "^4.8.1",
     "argon2": "^0.30.3",
     "dayjs": "^1.11.7",
