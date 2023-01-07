@@ -13,6 +13,7 @@ model Account {
   username String
   email    String  @unique
   password String
+  secret   String
   verified Boolean @default(false)
 
   createdAt DateTime @default(now())
@@ -33,6 +34,6 @@ model Note {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("notes")
   @@index([accountId])
+  @@map("notes")
 }
