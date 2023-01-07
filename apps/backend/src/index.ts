@@ -4,6 +4,8 @@ import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import { fastifyYupSchema } from "fastify-yup-schema";
 
+import router from "./routes/router";
+
 dotenv.config();
 
 const app: FastifyInstance = fastify({
@@ -14,7 +16,7 @@ app.register(cors, { origin: process.env.ORIGIN || "*" });
 app.register(helmet);
 app.register(fastifyYupSchema);
 
-app.register(() => {}, { prefix: "/" });
+app.register(router, { prefix: "/" });
 
 const start = async (port: number) => {
   try {
